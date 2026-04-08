@@ -1,0 +1,44 @@
+name : Django CI Process
+
+on:
+  push:
+    branches: [ "main" ]   
+
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    #steps
+    #1 take code from github to your system
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    #2 Python set up karne
+    - name: Set up Python 3.13
+      uses: actions/setup-python@v4
+      with: 
+        python-version: '3.13'
+
+    #3 Python Libraries
+    - name: Install Dependencies
+      run: | 
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    #4 Check Libraries
+    - name: Run Migrations
+      run: | 
+        python manage.py migrate
+
+    #5 Django Test Run
+    - name: Run Tests
+      run: |
+        python manage.py test
+
+      
+
+
