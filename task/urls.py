@@ -8,6 +8,10 @@ urlpatterns = [
     
     # api for task
     path('task', views.task_List, name='task-list'),
-    path('task/<int:pk>', views.task_details, name='task-details')
+    path('task/<int:pk>', views.task_details, name='task-details'),
+    
+    #frontend view
+    path('kanban', views.kanban_view, name='kanban-view')
+    
     
 ]

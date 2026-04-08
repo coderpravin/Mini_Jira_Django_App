@@ -90,3 +90,11 @@ def task_details(request, pk):
     if request.method == "DELETE":
         task.delete()
         return Response("The Task is deleted", status=status.HTTP_204_NO_CONTENT)
+    
+    
+    #handle kanabn view
+def kanban_view(request):
+    tasks = Task.objects.all()
+    context = {'tasks':tasks}
+    
+    return render(request, 'kanban.html', context)
